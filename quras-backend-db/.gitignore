@@ -1,0 +1,6 @@
+/.idea
+/node_modules
+/.node*
+/index.js_*
+/package-lock.json
+/*.log

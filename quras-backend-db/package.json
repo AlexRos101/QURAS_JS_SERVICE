@@ -1,0 +1,29 @@
+{
+  "name": "quras-backend-db",
+  "version": "1.0.0",
+  "description": "Quras blockchain back-end service for blockchain",
+  "main": "index.js",
+  "scripts": {
+    "test": "--run",
+    "start": "node index.js"
+  },
+  "keywords": [
+    "Quras"
+  ],
+  "author": "dotFund",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.6.1",
+    "asyncawait": "^1.0.7",
+    "crypto": "^1.0.1",
+    "deasync": "^0.1.13",
+    "quras-js": "1.2.3",
+    "msbuild": "^1.0.2",
+    "mysql": "^2.16.0",
+    "node-constants": "0.0.2",
+    "node-gyp": "^3.8.0",
+    "os-service": "^2.1.3",
+    "promise-mysql": "^3.3.1",
+    "sync-mysql": "^3.0.1"
+  }
+}

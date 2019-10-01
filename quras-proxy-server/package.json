@@ -1,0 +1,17 @@
+{
+  "name": "proxy",
+  "version": "1.0.0",
+  "description": "Proxy server for QURAS api server",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js &",
+    "stop": "./stop.sh"
+  },
+  "author": "dotFund",
+  "license": "ISC",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "http-proxy": "^1.17.0"
+  }
+}
