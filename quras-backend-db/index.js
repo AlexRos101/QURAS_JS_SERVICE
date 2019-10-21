@@ -371,7 +371,7 @@ if (process.argv[2] == "--add" && process.argv.length >= 4) {
 										var transaction = [
 											txs[i]['txid'],
 											txs[i]['asset']['type'],
-											JSON.stringify(txs[i]['asset']['name'][1]),
+											txs[i]['asset']['name'][0]['name'],
 											txs[i]['asset']['amount'],
 											txs[i]['asset']['precision'].toString(),
 											txs[i]['asset']['owner'],

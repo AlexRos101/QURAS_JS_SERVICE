@@ -87,7 +87,7 @@ function getTx(txid, res) {
         var vins = JSON.parse(txsResult[0].vin);
         var vouts = JSON.parse(txsResult[0].vout);
 
-        var sqlFindUtxos = "SELECT * FROM utxos WHERE ";
+        var sqlFindUtxos = "SELECT utxos.*, register_transaction.name, register_transaction.txid FROM `utxos` RIGHT JOIN register_transaction ON utxos.asset = register_transaction.txid WHERE ";
 
         var vinUtxos;
         if (vins.length > 0) {
@@ -95,9 +95,9 @@ function getTx(txid, res) {
           vins.forEach(vin => {
             var sqlWhere = "";
             if (index == 0) {
-              sqlWhere = "(txid='" + vin.txid + "' AND tx_out_index=" + vin.vout + ")";
+              sqlWhere = "(utxos.txid='" + vin.txid + "' AND tx_out_index=" + vin.vout + ")";
             } else {
-              sqlWhere = " OR (txid='" + vin.txid + "' AND tx_out_index=" + vin.vout + ")";
+              sqlWhere = " OR (utxos.txid='" + vin.txid + "' AND tx_out_index=" + vin.vout + ")";
             }
             sqlFindUtxos += sqlWhere;
             index ++;
@@ -109,14 +109,14 @@ function getTx(txid, res) {
         
         var voutUtxos;
         if (vouts.length > 0) {
-          sqlFindUtxos = "SELECT * FROM utxos WHERE ";
+          sqlFindUtxos = "SELECT utxos.*, register_transaction.name, register_transaction.txid FROM `utxos` RIGHT JOIN register_transaction ON utxos.asset = register_transaction.txid WHERE ";
           index = 0;
           vouts.forEach(vout => {
             var sqlWhere = "";
             if (index == 0) {
-              sqlWhere = "(txid='" + txid + "' AND tx_out_index=" + vout.n + ")";
+              sqlWhere = "(utxos.txid='" + txid + "' AND tx_out_index=" + vout.n + ")";
             } else {
-              sqlWhere = " OR (txid='" + txid + "' AND tx_out_index=" + vout.n + ")";
+              sqlWhere = " OR (utxos.txid='" + txid + "' AND tx_out_index=" + vout.n + ")";
             }
             sqlFindUtxos += sqlWhere;
             index ++;

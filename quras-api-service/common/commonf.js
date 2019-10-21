@@ -3,8 +3,8 @@ const defMaxTxs = 20;
 const defMaxAccounts = 20;
 const diffUnit = 10000000;
 
-const QRS = '0x8b122bbb1f170b9c41e26d0fb4bff193420e4a7e3e64dc671cf95ccdafd1e354';
-const QRG = '0xcbdaec389b003905c1b57931c10ac739421d6acdad08814b1e6366f586dd1265';
+const QRS = '0x52a4b58d99af84e0ca33318f3724e92c14835d97af46714a4a68a098a3843276';
+const QRG = '0x8ab6fec67e11099c1f64261667a1b0cff69b947869984411aa7238a661b22435';
 
 module.exports = {
     getQRS: function(){
