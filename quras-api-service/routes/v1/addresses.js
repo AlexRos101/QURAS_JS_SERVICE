@@ -46,7 +46,7 @@ function getAddress(address, res) {
         // Filter unclaimed tx
         var unclaims = [];
         txsResult.forEach(tx => {
-          if (tx.claimed != 1 && tx.asset == "0x" + Quras.CONST.ASSET_ID.QRS && tx.txid != null) {
+          if (tx.claimed != 1 && tx.asset == "0x" + Quras.CONST.ASSET_ID.QRS && tx.txid != null && tx.status == "spent") {
             var unclaim = {
               txid : tx.txid,
               vout : tx.tx_out_index
