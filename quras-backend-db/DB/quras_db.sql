@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 30, 2019 at 02:51 PM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- Generation Time: Oct 24, 2019 at 02:33 PM
+-- Server version: 10.3.15-MariaDB
+-- PHP Version: 7.3.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -171,7 +171,7 @@ CREATE TABLE `register_transaction` (
   `amount` text NOT NULL,
   `_precision` text NOT NULL,
   `owner` text NOT NULL,
-  `admin` text NOT NULL, 
+  `admin` text NOT NULL,
   `issure` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -230,7 +230,7 @@ CREATE TABLE `utxos` (
   `txid` varchar(255) NOT NULL,
   `tx_out_index` int(11) NOT NULL,
   `asset` varchar(255) NOT NULL,
-  `value` bigint(20) NOT NULL,
+  `value` varchar(20) NOT NULL,
   `address` varchar(255) NOT NULL,
   `status` varchar(255) NOT NULL,
   `claimed` int(11) NOT NULL

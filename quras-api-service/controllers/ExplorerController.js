@@ -32,14 +32,14 @@ module.exports = {
                 {
                     asset_symbols.push('XQG');
                 }
-            }
+            }/*
             else
             {
                 if (!asset_symbols.includes(data.asset))
                 {
                     asset_symbols.push(data.asset);
                 }
-            }
+            }*/
         });
         ////////////////////////////// assets ////////////////////////////////////////
         var QRS_obj = new Object();

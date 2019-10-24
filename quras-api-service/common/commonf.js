@@ -757,7 +757,7 @@ module.exports = {
         var formatedTx = {};
         formatedTx.txid = tx.txid;
         formatedTx.version = tx.version;
-        formatedTx.type = tx.type;
+        formatedTx.type = tx.tx_type;
         formatedTx.size = tx.size;
         formatedTx.vouts = voutUtxos;
         formatedTx.vins = vinUtxos;
@@ -836,7 +836,17 @@ module.exports = {
                 txid: addr.txid,
                 block_time: addr.time
             };
-            transactions.push(transaction);
+
+            var isExist = false;
+            transactions.forEach(tx => {
+                if (tx.txid == transaction.txid) {
+                    isExist = true;
+                }
+            });
+            
+            if (!isExist) {
+                transactions.push(transaction);
+            }
         });
 
         formatedAddresses.balances = balances;
