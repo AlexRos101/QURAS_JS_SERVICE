@@ -826,7 +826,7 @@ if (process.argv[2] == "--add" && process.argv.length >= 4) {
 											}
 
 											var asset_name = JSON.parse(QurasJs.u.hexstring2str(params[0].args[1]))[0].name
-											var asset_amount = parseInt(QurasJs.u.reverseHex(params[0].args[2]), 16) 
+											var asset_amount = parseInt(QurasJs.u.reverseHex(params[0].args[2]), 16) / 100000000
 											var asset_precision = params[0].args[3]
 											var asset_owner = QurasJs.u.reverseHex(params[0].args[4])
 											var asset_admin = QurasJs.wallet.getAddressFromScriptHash(QurasJs.u.reverseHex(params[0].args[5]))

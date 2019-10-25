@@ -161,7 +161,7 @@ module.exports = {
                 
                 if (asset != undefined)
                 {
-                    var sql = 'SELECT * FROM utxos WHERE address = ? AND asset = ? AND status="unspent"';
+                    var sql = 'SELECT utxos.*, register_transaction.name FROM utxos LEFT JOIN register_transaction on utxos.asset = register_transaction.txid WHERE address = ? AND asset = ? AND status="unspent"';
                     connection.query(sql, [addr, asset], function(err, rows) {
                         if (err) {
                             callback(err, connection);
@@ -176,7 +176,7 @@ module.exports = {
                 }
                 else
                 {
-                    var sql = 'SELECT * FROM utxos WHERE address = ? AND status="unspent"';
+                    var sql = 'SELECT utxos.*, register_transaction.name FROM utxos LEFT JOIN register_transaction on utxos.asset = register_transaction.txid WHERE address = ? AND status="unspent"';
                     connection.query(sql, [addr], function(err, rows) {
                         if (err) {
                             callback(err, connection);

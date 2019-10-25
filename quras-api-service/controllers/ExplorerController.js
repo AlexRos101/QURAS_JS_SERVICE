@@ -14,107 +14,54 @@ module.exports = {
         var balance_obj = new Object();
         var asset_symbols = [];
         var token_symbols = [];
-        var assets_obj = new Object();
         var tokens_obj = new Object();
 
         ////////////////////////////// assets symbols ////////////////////////////////
         datas.forEach(data => {
-            if (data.asset == commonf.getQRS())
+            if (!asset_symbols.includes(data.name))
             {
-                if (!asset_symbols.includes('XQC'))
-                {
-                    asset_symbols.push('XQC');
-                }
+                asset_symbols.push(data.name);
             }
-            else if (data.asset == commonf.getQRG())
-            {
-                if (!asset_symbols.includes('XQG'))
-                {
-                    asset_symbols.push('XQG');
-                }
-            }/*
-            else
-            {
-                if (!asset_symbols.includes(data.asset))
-                {
-                    asset_symbols.push(data.asset);
-                }
-            }*/
         });
         ////////////////////////////// assets ////////////////////////////////////////
-        var QRS_obj = new Object();
-        var QRS_balance = 0;
-        var QRS_spent = [];
-        var QRS_unspent = [];
-
-        var QRG_obj = new Object();
-        var QRG_balance = 0;
-        var QRG_spent = [];
-        var QRG_unspent = [];
+        var assetObjs = new Object();
         datas.forEach(data => {
-            if (data.asset == commonf.getQRS())
-            {
-                if (data.status == 'unspent')
-                {
-                    QRS_balance += Number(data.value);
+            if (!assetObjs[data.name]) {
+                var assetObj = new Object();
+                assetObj.balance = 0;
+                assetObj.unspent = new Array();
+                assetObj.spent = new Array();
 
-                    var utxo = new Object();
-                    utxo.index = data.tx_out_index;
-                    utxo.txid = data.txid.slice(2);
-                    utxo.value = data.value;
-
-                    QRS_unspent.push(utxo);
-                }
-                else if (data.status == 'spent')
-                {
-                    var stxo = new Object();
-                    stxo.index = data.tx_out_index;
-                    stxo.txid = data.txid.slice(2);
-                    stxo.value = data.value;
-
-                    QRS_spent.push(stxo); 
-                }
+                assetObjs[data.name] = assetObj;
             }
-            else if (data.asset == commonf.getQRG())
+
+            if (data.status == 'unspent')
             {
-                if (data.status == 'unspent')
-                {
-                    QRG_balance += Number(data.value);
+                assetObjs[data.name].balance += Number(data.value);
 
-                    var utxo = new Object();
-                    utxo.index = data.tx_out_index;
-                    utxo.txid = data.txid.slice(2);
-                    utxo.value = data.value;
+                var utxo = new Object();
+                utxo.index = data.tx_out_index;
+                utxo.txid = data.txid.slice(2);
+                utxo.value = data.value;
 
-                    QRG_unspent.push(utxo);
-                }
-                else if (data.status == 'spent')
-                {
-                    var stxo = new Object();
-                    stxo.index = data.tx_out_index;
-                    stxo.txid = data.txid.slice(2);
-                    stxo.value = data.value;
+                assetObjs[data.name].unspent.push(utxo);
+            }
+            else if (data.status == 'spent')
+            {
+                var stxo = new Object();
+                stxo.index = data.tx_out_index;
+                stxo.txid = data.txid.slice(2);
+                stxo.value = data.value;
 
-                    QRG_spent.push(stxo); 
-                }
+                assetObjs[data.name].spent.push(stxo); 
             }
         });
 
-        QRS_obj.balance = QRS_balance;
-        QRS_obj.unspent = QRS_unspent;
-        QRS_obj.spent = QRS_spent;
-
-        QRG_obj.balance = QRG_balance;
-        QRG_obj.unspent = QRG_unspent;
-        QRG_obj.spent = QRG_spent;
-
-        assets_obj.XQC = QRS_obj;
-        assets_obj.XQG = QRG_obj;
         ////////////////////////////// tokens symbols ////////////////////////////////
 
         ////////////////////////////// tokens ////////////////////////////////////////
 
-        balance_obj.assets = assets_obj;
+        balance_obj.assets = assetObjs;
         balance_obj.assetSymbols = asset_symbols;
         balance_obj.tokenSymbols = token_symbols;
         balance_obj.tokens = tokens_obj;
