@@ -31,6 +31,7 @@ module.exports = {
                 assetObj.balance = 0;
                 assetObj.unspent = new Array();
                 assetObj.spent = new Array();
+                assetObj.assetId = data.asset.slice(2);
 
                 assetObjs[data.name] = assetObj;
             }

@@ -17,7 +17,7 @@
     "asyncawait": "^1.0.7",
     "crypto": "^1.0.1",
     "deasync": "^0.1.13",
-    "quras-js": "1.2.6",
+    "quras-js": "1.2.7",
     "msbuild": "^1.0.2",
     "mysql": "^2.16.0",
     "node-constants": "0.0.2",
