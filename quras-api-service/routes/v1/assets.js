@@ -38,7 +38,10 @@ function getAssets(offset, limit, res) {
       callback(null, syncConnection, offset, limit);
 		},
 		function getAssetsFromOffset(connection, offset, limit, callback) {
-      var sqlTx = "SELECT register_transaction.*, transactions.block_number, blocks.time FROM register_transaction LEFT JOIN transactions ON register_transaction.txid=transactions.txid LEFT JOIN blocks ON transactions.block_number=blocks.block_number ORDER BY transactions.block_number LIMIT ?, ?";
+      var sqlTx = "SELECT register_transaction.*, transactions.block_number, blocks.time FROM register_transaction LEFT JOIN transactions ON register_transaction.txid=transactions.txid LEFT JOIN blocks ON transactions.block_number=blocks.block_number ORDER BY transactions.block_number";
+      if (offset != -1 || limit != -1) {
+        sqlTx += " LIMIT ?, ?";
+      }
       
       try {
         var txsResult = connection.query(sqlTx, [offset, limit]);
@@ -178,6 +181,13 @@ router.get('/', function(req, res, next){
   var offset = 0;
   var limit = 20;
   console.log("Get assets api was called, Params => Offset : 0, Limit : 20");
+  getAssets(offset, limit, res);
+});
+
+router.get('/all', function(req, res, next){
+  var offset = -1;
+  var limit = -1;
+  console.log("Get all assets api was called.");
   getAssets(offset, limit, res);
 });
 
