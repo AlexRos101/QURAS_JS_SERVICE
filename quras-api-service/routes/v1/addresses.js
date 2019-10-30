@@ -58,7 +58,7 @@ function getAddress(address, res) {
 
         rpcServer.getClaimAmount(unclaims)
         .then((data) => {
-          var unclaimed = {amount: data.unclaimed, asset_symbol: Quras.CONST.ASSETS.QRG, asset_hash: "0x" + Quras.CONST.ASSET_ID.QRG, references: unclaims};
+          var unclaimed = {amount: data.unclaimed, asset_symbol: 'XQG', asset_hash: "0x" + Quras.CONST.ASSET_ID.QRG, references: unclaims};
           var retTx = commonf.getFormatedAddress(txsResult, address, unclaimed);
 
           var sqlAssetName = "SELECT name, txid FROM register_transaction WHERE";
